@@ -49,6 +49,18 @@ iOS ntfy App：`Settings → Subscribe to topic`，URL 填上面的完整地址�
 新加一个人单独主题：在 `watchlist.txt` 里写 `<账号> <主题>`，主题名以 `x-` 开头（写入令牌已授权 `x-*`），
 提交后下一轮生效；第一次见到这个账号会自动推一条最新的做种子。
 
+
+## 网页配置
+
+`https://x-watch-config.app.workbuddy.host/?sharecode=23YTOGQN6L`
+
+单页应用，直接读写本仓库的 `watchlist.txt`（GitHub Contents API），支持新增/改主题/停用/删除，
+改动提交后下一轮 cron 自动生效。首次使用需粘贴一个 Fine-grained token（只授权本仓库，
+`Contents: Read and write`；要「立即运行一轮」再加 `Actions: Read and write`），
+令牌只存在浏览器 localStorage，不经过任何服务器。
+
+文件格式向后兼容：`#! handle topic` 表示停用（`xwatch.py` 把它当注释跳过）。
+
 ## 消息格式
 
 一条推文 = 一条通知：标题是「作者 (@handle)」，正文是推文全文（英文另附中文翻译），
