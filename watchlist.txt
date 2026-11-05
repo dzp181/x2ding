@@ -1,20 +1,9 @@
 # 格式：账号 [主题]
-#   写了主题：这个人的推文只进这个主题 —— 一个人一个主题，订阅时只订他这一个
-#   不写主题：走默认主题 xtweet-9f4bq2wp（当前没人用，全部走独立主题）
-# '#' 开头或行尾是注释；改完提交，下一轮（10 分钟）生效。
-
-# —— 财经快讯（已停推，2026-11-05 用户要求取消；要恢复去掉行首 # 即可）——
-# DeItaone          x-deitaone
-# FirstSquawk       x-firstsquawk
-
-# —— 关键人物（一人一个主题）——
+#   写了主题：这个人的推文只进这个主题（一人一主题）
+#   不写主题：走默认主题 xtweet-9f4bq2wp
+#   "#!" 开头 = 已停用，不抓取也不推送
+# 本文件由网页配置工具维护，也可以直接手改，两边都认。
 elonmusk            x-elonmusk
-xy_xtony            x-xtony        # 逍遥XTony（独立交易员，原 @xtony1314，现改名 xy_xtony）
-aleabitoreddit      x-serenity     # Serenity（AI/半导体供应链拆解，106 万粉）
-# realDonaldTrump   x-trump
-# CathieDWood       x-wood
-
-# —— 公司号 ——
-# nvidia            x-nvidia
-# Tesla             x-tesla
-# OpenAI            x-openai
+xy_xtony            x-xtony
+aleabitoreddit      x-serenity
+cz_binance          x-cz_binance
