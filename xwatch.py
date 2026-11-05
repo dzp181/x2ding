@@ -91,7 +91,7 @@ def load_watchlist():
 
 # -------------------------------------------------------------------- 抓取 --
 
-def fetch_statuses(session, handle, count=20, attempts=4):
+def fetch_statuses(session, handle, count=20, attempts=5):
     """
     取某账号最近若干条推文；彻底失败返回 None（与“真的没有推文”区分开）。
 
@@ -118,7 +118,7 @@ def fetch_statuses(session, handle, count=20, attempts=4):
         except Exception as e:
             last_err = str(e)
         if attempt < attempts - 1:
-            time.sleep(3 * (attempt + 1))
+            time.sleep(2 * (attempt + 1))
     log(f"@{handle}: 抓取失败 — {last_err}")
     return None
 
