@@ -61,11 +61,19 @@ iOS ntfy App：`Settings → Subscribe to topic`，URL 填上面的完整地址�
 图片地址不能直接用 `pbs.twimg.com`——国内打不开。走 `wsrv.nl` 图床代理：
 
 ```
-https://wsrv.nl/?url=pbs.twimg.com/media/xxx.jpg&w=1200&output=jpg&n=-1
+https://wsrv.nl/?url=https%3A%2F%2Fpbs.twimg.com%2Fmedia%2Fxxx.jpg&w=1200&output=jpg&n=-1
 ```
 
-服务器实测 200 / image/jpeg / 2 秒内出图。ImgBB 走不通（`i.ibb.co` 在服务器上 SSL 握手失败），
-所以没有接 ImgBB。强制看一张图：`gh workflow run xwatch.yml -f test_image=true`。
+**`url` 参数必须整条 percent-encode（连 `https://` 一起编码）。** 不编码的话 wsrv 去抓 twimg 会拿到
+520，它自己回 404，手机端就是“图片下载失败”。这是踩过的坑：不编码时 `media/` 的普通照片全挂，
+而 `amplify_video_thumb` 的视频封面却能出图，很容易误判成“偶发网络问题”。
+
+服务端不会替我们校验附件（ntfy 只把 URL 透传给客户端，手机自己去下），所以**发送前会自己先 GET 一遍**：
+状态 200 + `Content-Type: image/*` + 文件头是 JPEG/PNG/GIF/WEBP 才算通过，不通过就换一次缓存键重试，
+仍失败则这条只发文字——宁可没图，也不发一张点开是 404 的图。
+
+ImgBB 走不通（`i.ibb.co` 在服务器上 SSL 握手失败），所以没有接 ImgBB。
+强制看一张图：`gh workflow run xwatch.yml -f test_image=true`。
 
 ## 可调参数
 
