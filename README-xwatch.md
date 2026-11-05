@@ -4,11 +4,15 @@
 不依赖本机常驻、不依赖 Nitter 实例、不经过被墙节点。
 
 ```
-GitHub Actions (ubuntu-latest, 境外)
-   └─ api.fxtwitter.com  直连抓取推文 JSON
-        └─ POST http://112.74.95.74:8858   （Bearer token）
-             └─ 国内 ntfy（112.74.95.74:8858）→ ntfy.sh 上游 → APNs → iPhone
+国内服务器 crontab（每 10 分钟）── workflow_dispatch ──▶ GitHub Actions (ubuntu-latest, 境外)
+                                                              └─ api.fxtwitter.com 直连抓推文 JSON
+                                                                   └─ POST http://112.74.95.74:8858（Bearer token）
+                                                                        └─ 国内 ntfy → ntfy.sh 上游 → APNs → iPhone
 ```
+
+定时为什么不用 GitHub 自带的 `schedule`：fork 仓库的定时任务经常不触发、或者延迟十几分钟。
+改成国内服务器的 crontab 调 `workflow_dispatch`（`/home/zhangsan/bin/xwatch-trigger.sh`，`*/10 * * * *`），
+准时且确定；抓取和推送仍然全在 Actions 里跑，服务器只负责“敲一下”。
 
 ## 订阅
 
@@ -63,6 +67,7 @@ gh run list -R dzp181/x2ding
 
 ## 已知边界
 
-* GitHub 的 `schedule` 不是精确定时，高峰期会延迟 3–15 分钟；
-* 只在公开仓库免费跑，若仓库 60 天没有任何提交，定时任务会被 GitHub 暂停（本项目每轮都会提交 `state.json`，不会触发）；
+* 触发节奏由服务器 crontab 控制（每 10 分钟）；GitHub 侧排队通常 5–20 秒起跑；
+* 服务器上的 `~/bin/xwatch-trigger.sh` 需要 `~/.x2ding.gh-token`（600），令牌失效就换一个：
+  `gh auth token` 取新值，覆盖写入该文件即可；
 * 国内直连打不开 `x.com`，通知里的 `click` 需要梯子；正文已经有全文，链接只是备用。

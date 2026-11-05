@@ -2,9 +2,11 @@ name: xwatch
 
 # 抓取在 GitHub 的境外 runner 上跑（x.com / fxtwitter 直连），
 # 推送打到自己国内服务器的 ntfy，这条链路不经过被墙的节点。
+#
+# 定时不用 GitHub 的 schedule（fork 仓库上经常不触发/延迟很久），
+# 改由国内服务器的 crontab 每 10 分钟调 workflow_dispatch 触发：
+#   /home/zhangsan/bin/xwatch-trigger.sh   （*/10 * * * *)
 on:
-  schedule:
-    - cron: "*/10 * * * *"
   workflow_dispatch:
     inputs:
       test:
