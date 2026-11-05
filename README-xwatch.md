@@ -44,6 +44,7 @@ iOS ntfy App：`Settings → Subscribe to topic`，URL 填上面的完整地址�
 | `FirstSquawk` | `xtweet-9f4bq2wp` | 同上 |
 | `elonmusk` | `x-elonmusk` | `http://112.74.95.74:8858/x-elonmusk` |
 | `xy_xtony`（逍遥XTony） | `x-xtony` | `http://112.74.95.74:8858/x-xtony` |
+| `aleabitoreddit`（Serenity） | `x-serenity` | `http://112.74.95.74:8858/x-serenity` |
 
 新加一个人单独主题：在 `watchlist.txt` 里写 `<账号> <主题>`，主题名以 `x-` 开头（写入令牌已授权 `x-*`），
 提交后下一轮生效；第一次见到这个账号会自动推一条最新的做种子。
