@@ -64,21 +64,28 @@ def sid(item):
 # ---------------------------------------------------------------- watchlist --
 
 def load_watchlist():
-    """读取 watchlist.txt；每行一个账号，支持 @handle 与行尾 # 注释。"""
+    """
+    读取 watchlist.txt。每行 `handle [topic]`：
+        elonmusk   x-elonmusk      -> 只推到 x-elonmusk 这个主题（一个人一个主题）
+        DeItaone                   -> 没写主题就走默认主题 NTFY_TOPIC（多人混在一起）
+    # 开头或行尾是注释。
+    """
     accounts = []
+    seen = set()
     if not os.path.exists(WATCHLIST_FILE):
         log("watchlist.txt 不存在，退化为默认名单")
-        return ["DeItaone", "FirstSquawk", "elonmusk"]
+        return [(h, "") for h in ("DeItaone", "FirstSquawk", "elonmusk")]
     with open(WATCHLIST_FILE, "r", encoding="utf-8") as f:
         for raw in f:
             line = raw.split("#", 1)[0].strip()
             if not line:
                 continue
-            line = line.lstrip("@")
-            # 允许 “handle, 备注” 这种写法
-            line = re.split(r"[\s,，]+", line)[0].strip()
-            if line and line not in accounts:
-                accounts.append(line)
+            parts = [p for p in re.split(r"[\s,，]+", line) if p]
+            handle = parts[0].lstrip("@")
+            topic = parts[1] if len(parts) > 1 else ""
+            if handle and handle.lower() not in seen:
+                seen.add(handle.lower())
+                accounts.append((handle, topic))
     return accounts
 
 
@@ -203,8 +210,8 @@ def proxied_image(url):
 
 # -------------------------------------------------------------------- 推送 --
 
-def publish(session, title, message, click="", attach=""):
-    payload = {"topic": NTFY_TOPIC, "title": title, "message": message}
+def publish(session, title, message, click="", attach="", topic=""):
+    payload = {"topic": topic or NTFY_TOPIC, "title": title, "message": message}
     if click:
         payload["click"] = click
     if attach:
@@ -226,7 +233,7 @@ def publish(session, title, message, click="", attach=""):
             # 附件拉取失败时退回纯文字，别把整条消息丢掉
             if attach and r.status_code in (400, 413, 415, 500):
                 log("带图推送失败，降级为纯文字重试")
-                return publish(session, title, message, click, "")
+                return publish(session, title, message, click, "", topic)
             if r.status_code in (401, 403):
                 return False  # 鉴权问题，重试无意义
         except Exception as e:
@@ -257,8 +264,10 @@ def main():
 
     if TEST_MODE == "image":
         # 从监控名单里挑一条“最新且带图”的推文，强制推一次（忽略 state），用来看图片效果
-        handles = load_watchlist() + [h for h in ("nvidia", "Tesla", "OpenAI") if h not in load_watchlist()]
-        for handle in handles:
+        watch = load_watchlist()
+        names = [h for h, _ in watch]
+        watch += [(h, "") for h in ("nvidia", "Tesla", "OpenAI") if h not in names]
+        for handle, topic in watch:
             results = fetch_statuses(session, handle, 20)
             if not results:
                 continue
@@ -268,14 +277,14 @@ def main():
                     continue
                 title, body, click = build_message(session, status)
                 log(f"图片样例来源 @{handle} {status.get('id')} -> {img[:80]}")
-                ok = publish(session, title, body, click, img)
+                ok = publish(session, title, body, click, img, topic)
                 log("图片消息发送" + ("成功" if ok else "失败"))
                 return 0 if ok else 1
         log("名单里最近 8 条都没图片，没发出去")
         return 1
 
     accounts = load_watchlist()
-    log(f"监控 {len(accounts)} 个账号: {', '.join(accounts)}")
+    log("监控 " + ", ".join(f"{h}→{t or NTFY_TOPIC}" for h, t in accounts))
 
     state = {}
     if os.path.exists(STATE_FILE):
@@ -290,7 +299,7 @@ def main():
     total_pushed = 0
     cutoff = datetime.now(timezone.utc).replace(tzinfo=None) - timedelta(hours=MAX_AGE_HOURS)
 
-    for handle in accounts:
+    for handle, topic in accounts:
         key = handle.lower()
         results = fetch_statuses(session, handle)
         if results is None:
@@ -321,9 +330,9 @@ def main():
             if DRY_RUN:
                 log(f"[DRY] {title}\n{body}\n")
                 continue
-            if publish(session, title, body, click, proxied_image(pick_image(status))):
+            if publish(session, title, body, click, proxied_image(pick_image(status)), topic):
                 total_pushed += 1
-                log(f"@{handle}: 已推送 {status.get('id')}")
+                log(f"@{handle}: 已推送 {status.get('id')} → {topic or NTFY_TOPIC}")
                 time.sleep(1)
             else:
                 log(f"@{handle}: {status.get('id')} 推送失败，保留状态下轮重试")

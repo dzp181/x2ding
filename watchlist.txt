@@ -1,16 +1,18 @@
-# 每条一行：X 账号（@ 可写可不写）。# 开头或行尾的注释都会被忽略。
-# 改完直接 commit / 网页保存即可，下一轮（最长 10 分钟）生效。
+# 格式：账号 [主题]
+#   写了主题：这个人的推文只进这个主题 —— 一个人一个主题，订阅时只订他这一个
+#   不写主题：走默认主题 xtweet-9f4bq2wp（多人混在一起）
+# '#' 开头或行尾是注释；改完提交，下一轮（10 分钟）生效。
 
-# —— 财经快讯类（信息密度高，建议保留）——
-DeItaone            # *Walter Bloomberg，盘前盘中快讯
-FirstSquawk         # First Squawk，全球财经快讯
+# —— 财经快讯（混在默认主题 xtweet-9f4bq2wp 里）——
+DeItaone
+FirstSquawk
 
-# —— 关键人物 ——
-elonmusk            # 马斯克（TSLA / 加密 / 政策风向）
-# realDonaldTrump   # 特朗普（关税、政策，噪音较大，需要再开）
-# CathieDWood       # 木头姐（成长股风向）
+# —— 关键人物（一人一个主题）——
+elonmusk            x-elonmusk
+# realDonaldTrump   x-trump
+# CathieDWood       x-wood
 
-# —— 公司号（多为营销内容，按需开）——
-# nvidia
-# Tesla
-# OpenAI
+# —— 公司号 ——
+# nvidia            x-nvidia
+# Tesla             x-tesla
+# OpenAI            x-openai
