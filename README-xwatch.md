@@ -38,6 +38,19 @@ iOS ntfy App：`Settings → Subscribe to topic`，URL 填上面的完整地址�
 一条推文 = 一条通知：标题是「作者 (@handle)」，正文是推文全文（英文另附中文翻译），
 末尾一行 CST 时间，推文链接放在 `click` 字段里，正文不出现网址（避免 iOS 折行乱版）。
 
+## 图片
+
+推文带图（或视频）时，取第一张图（视频取封面）放进 `attach` 字段，iOS 通知里会显示预览。
+
+图片地址不能直接用 `pbs.twimg.com`——国内打不开。走 `wsrv.nl` 图床代理：
+
+```
+https://wsrv.nl/?url=pbs.twimg.com/media/xxx.jpg&w=1200&output=jpg&n=-1
+```
+
+服务器实测 200 / image/jpeg / 2 秒内出图。ImgBB 走不通（`i.ibb.co` 在服务器上 SSL 握手失败），
+所以没有接 ImgBB。强制看一张图：`gh workflow run xwatch.yml -f test_image=true`。
+
 ## 可调参数
 
 仓库 `Settings → Variables`（也可以直接写进 workflow 的 `env`）：
