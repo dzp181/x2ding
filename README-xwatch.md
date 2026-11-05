@@ -35,16 +35,16 @@ iOS ntfy App：`Settings → Subscribe to topic`，URL 填上面的完整地址�
 
 ## 主题
 
-默认主题 `xtweet-9f4bq2wp` 收“没指定主题”的账号（快讯类混在一起）。
+默认主题 `xtweet-9f4bq2wp` 收“没指定主题”的账号；目前所有账号都走独立主题，默认主题已停用。
 指定了主题的账号，推文只进自己的主题：
 
 | 账号 | 主题 | 订阅地址 |
 | --- | --- | --- |
-| `DeItaone` | `xtweet-9f4bq2wp` | `http://112.74.95.74:8858/xtweet-9f4bq2wp` |
-| `FirstSquawk` | `xtweet-9f4bq2wp` | 同上 |
 | `elonmusk` | `x-elonmusk` | `http://112.74.95.74:8858/x-elonmusk` |
 | `xy_xtony`（逍遥XTony） | `x-xtony` | `http://112.74.95.74:8858/x-xtony` |
 | `aleabitoreddit`（Serenity） | `x-serenity` | `http://112.74.95.74:8858/x-serenity` |
+
+`DeItaone` / `FirstSquawk`（原 `xtweet-9f4bq2wp` 混合主题）已于 2026-11-05 停推，名单里保留注释行便于恢复。
 
 新加一个人单独主题：在 `watchlist.txt` 里写 `<账号> <主题>`，主题名以 `x-` 开头（写入令牌已授权 `x-*`），
 提交后下一轮生效；第一次见到这个账号会自动推一条最新的做种子。

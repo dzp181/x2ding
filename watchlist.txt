@@ -1,11 +1,11 @@
 # 格式：账号 [主题]
 #   写了主题：这个人的推文只进这个主题 —— 一个人一个主题，订阅时只订他这一个
-#   不写主题：走默认主题 xtweet-9f4bq2wp（多人混在一起）
+#   不写主题：走默认主题 xtweet-9f4bq2wp（当前没人用，全部走独立主题）
 # '#' 开头或行尾是注释；改完提交，下一轮（10 分钟）生效。
 
-# —— 财经快讯（混在默认主题 xtweet-9f4bq2wp 里）——
-DeItaone
-FirstSquawk
+# —— 财经快讯（已停推，2026-11-05 用户要求取消；要恢复去掉行首 # 即可）——
+# DeItaone          x-deitaone
+# FirstSquawk       x-firstsquawk
 
 # —— 关键人物（一人一个主题）——
 elonmusk            x-elonmusk
