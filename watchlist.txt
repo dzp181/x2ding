@@ -10,6 +10,7 @@ FirstSquawk
 # —— 关键人物（一人一个主题）——
 elonmusk            x-elonmusk
 xy_xtony            x-xtony        # 逍遥XTony（独立交易员，原 @xtony1314，现改名 xy_xtony）
+aleabitoreddit      x-serenity     # Serenity（AI/半导体供应链拆解，106 万粉）
 # realDonaldTrump   x-trump
 # CathieDWood       x-wood
 
