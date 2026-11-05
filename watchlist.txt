@@ -1,0 +1,16 @@
+# 每条一行：X 账号（@ 可写可不写）。# 开头或行尾的注释都会被忽略。
+# 改完直接 commit / 网页保存即可，下一轮（最长 10 分钟）生效。
+
+# —— 财经快讯类（信息密度高，建议保留）——
+DeItaone            # *Walter Bloomberg，盘前盘中快讯
+FirstSquawk         # First Squawk，全球财经快讯
+
+# —— 关键人物 ——
+elonmusk            # 马斯克（TSLA / 加密 / 政策风向）
+# realDonaldTrump   # 特朗普（关税、政策，噪音较大，需要再开）
+# CathieDWood       # 木头姐（成长股风向）
+
+# —— 公司号（多为营销内容，按需开）——
+# nvidia
+# Tesla
+# OpenAI
