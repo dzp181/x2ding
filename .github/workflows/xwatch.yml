@@ -17,6 +17,10 @@ on:
         description: "只抓取打印，不推送（调试用）"
         type: boolean
         default: false
+      test_image:
+        description: "推一条带图的推文，验证图片能不能显示"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -47,12 +51,12 @@ jobs:
           NTFY_TOPIC: ${{ vars.NTFY_TOPIC || 'xtweet-9f4bq2wp' }}
           NTFY_TOKEN: ${{ secrets.NTFY_TOKEN }}
           XWATCH_TRANSLATE: ${{ vars.XWATCH_TRANSLATE || 'true' }}
-          XWATCH_TEST: ${{ inputs.test && 'true' || 'false' }}
+          XWATCH_TEST: ${{ inputs.test && 'true' || (inputs.test_image && 'image' || 'false') }}
           XWATCH_DRY_RUN: ${{ inputs.dry_run && 'true' || 'false' }}
         run: python xwatch.py
 
       - name: Persist state
-        if: ${{ !inputs.test && !inputs.dry_run }}
+        if: ${{ !inputs.test && !inputs.test_image && !inputs.dry_run }}
         run: |
           if [ -z "$(git status --porcelain state.json)" ]; then
             echo "state.json 无变化，跳过提交"

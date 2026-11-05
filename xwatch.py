@@ -42,7 +42,7 @@ MAX_PER_USER = int(os.environ.get("XWATCH_MAX_PER_USER", "3"))
 MAX_AGE_HOURS = int(os.environ.get("XWATCH_MAX_AGE_HOURS", "18"))
 MAX_CHARS = int(os.environ.get("XWATCH_MAX_CHARS", "1200"))
 DRY_RUN = os.environ.get("XWATCH_DRY_RUN", "false").lower() in ("1", "true", "yes", "on")
-TEST_MODE = os.environ.get("XWATCH_TEST", "false").lower() in ("1", "true", "yes", "on")
+TEST_MODE = os.environ.get("XWATCH_TEST", "false").strip().lower()  # false / true / image
 
 UA = (
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
@@ -174,12 +174,41 @@ def build_message(session, status):
     return title, body, status.get("url", "")
 
 
+# -------------------------------------------------------------------- 图片 --
+
+def pick_image(status):
+    """取推文里第一张能当封面的图：优先真图，其次视频封面。"""
+    media = (status.get("media") or {}).get("all") or []
+    for item in media:
+        if item.get("type") == "photo" and item.get("url"):
+            return item["url"]
+    for item in media:
+        if item.get("thumbnail_url"):
+            return item["thumbnail_url"]
+    return ""
+
+
+def proxied_image(url):
+    """
+    pbs.twimg.com 在国内直连打不开，走 wsrv.nl 图床代理（服务器实测可达，2s 内出图）。
+    只对 twimg 域名改写，其它保持原样。
+    """
+    if not url:
+        return ""
+    if "pbs.twimg.com" not in url:
+        return url
+    bare = url.split("?")[0].replace("https://", "").replace("http://", "")
+    return f"https://wsrv.nl/?url={bare}&w=1200&output=jpg&n=-1"
+
+
 # -------------------------------------------------------------------- 推送 --
 
-def publish(session, title, message, click=""):
+def publish(session, title, message, click="", attach=""):
     payload = {"topic": NTFY_TOPIC, "title": title, "message": message}
     if click:
         payload["click"] = click
+    if attach:
+        payload["attach"] = attach
     headers = {"Content-Type": "application/json; charset=utf-8"}
     if NTFY_TOKEN:
         headers["Authorization"] = f"Bearer {NTFY_TOKEN}"
@@ -189,11 +218,15 @@ def publish(session, title, message, click=""):
                 f"{NTFY_URL}/",
                 data=json.dumps(payload, ensure_ascii=False).encode("utf-8"),
                 headers=headers,
-                timeout=20,
+                timeout=30,
             )
             if r.status_code == 200:
                 return True
             log(f"推送失败 HTTP {r.status_code}: {r.text[:200]}")
+            # 附件拉取失败时退回纯文字，别把整条消息丢掉
+            if attach and r.status_code in (400, 413, 415, 500):
+                log("带图推送失败，降级为纯文字重试")
+                return publish(session, title, message, click, "")
             if r.status_code in (401, 403):
                 return False  # 鉴权问题，重试无意义
         except Exception as e:
@@ -212,7 +245,7 @@ def main():
     session = requests.Session()
     session.headers.update({"User-Agent": UA})
 
-    if TEST_MODE:
+    if TEST_MODE in ("true", "1", "yes", "on"):
         ok = publish(
             session,
             "xwatch 自检",
@@ -221,6 +254,25 @@ def main():
         )
         log("测试消息发送" + ("成功" if ok else "失败"))
         return 0 if ok else 1
+
+    if TEST_MODE == "image":
+        # 从监控名单里挑一条“最新且带图”的推文，强制推一次（忽略 state），用来看图片效果
+        handles = load_watchlist() + [h for h in ("nvidia", "Tesla", "OpenAI") if h not in load_watchlist()]
+        for handle in handles:
+            results = fetch_statuses(session, handle, 20)
+            if not results:
+                continue
+            for status in sorted(results, key=sid, reverse=True)[:8]:
+                img = proxied_image(pick_image(status))
+                if not img:
+                    continue
+                title, body, click = build_message(session, status)
+                log(f"图片样例来源 @{handle} {status.get('id')} -> {img[:80]}")
+                ok = publish(session, title, body, click, img)
+                log("图片消息发送" + ("成功" if ok else "失败"))
+                return 0 if ok else 1
+        log("名单里最近 8 条都没图片，没发出去")
+        return 1
 
     accounts = load_watchlist()
     log(f"监控 {len(accounts)} 个账号: {', '.join(accounts)}")
@@ -269,7 +321,7 @@ def main():
             if DRY_RUN:
                 log(f"[DRY] {title}\n{body}\n")
                 continue
-            if publish(session, title, body, click):
+            if publish(session, title, body, click, proxied_image(pick_image(status))):
                 total_pushed += 1
                 log(f"@{handle}: 已推送 {status.get('id')}")
                 time.sleep(1)
