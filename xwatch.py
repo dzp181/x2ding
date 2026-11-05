@@ -91,22 +91,35 @@ def load_watchlist():
 
 # -------------------------------------------------------------------- 抓取 --
 
-def fetch_statuses(session, handle, count=20):
-    """取某账号最近若干条推文；抓取失败返回 None（与“空列表”区分开）。"""
+def fetch_statuses(session, handle, count=20, attempts=4):
+    """
+    取某账号最近若干条推文；彻底失败返回 None（与“真的没有推文”区分开）。
+
+    坑：fxtwitter 的 /2/profile 接口在缓存冷的时候会先返 404 + 空 results，
+       隔几秒再请求就 200 了 —— 所以 404 当瞬时故障重试，不能直接放弃。
+    """
     url = f"{API_BASE}/2/profile/{handle}/statuses"
-    for attempt in range(3):
+    last_err = ""
+    for attempt in range(attempts):
         try:
             r = session.get(url, params={"count": count}, timeout=20)
-            if r.status_code == 404:
-                log(f"@{handle}: 账号不存在或接口 404")
-                return None
-            r.raise_for_status()
-            data = r.json()
-            results = data.get("results") or []
-            return [x for x in results if isinstance(x, dict) and x.get("id")]
+            if r.status_code == 200:
+                data = r.json()
+                results = [x for x in (data.get("results") or []) if isinstance(x, dict) and x.get("id")]
+                if results:
+                    return results
+                last_err = "200 但结果为空"
+            elif r.status_code == 404:
+                last_err = "404（多为缓存冷，重试）"
+            else:
+                last_err = f"HTTP {r.status_code}"
+                if r.status_code in (401, 403):
+                    break
         except Exception as e:
-            log(f"@{handle}: 抓取失败({attempt + 1}/3) {e}")
-            time.sleep(2 * (attempt + 1))
+            last_err = str(e)
+        if attempt < attempts - 1:
+            time.sleep(3 * (attempt + 1))
+    log(f"@{handle}: 抓取失败 — {last_err}")
     return None
 
 
