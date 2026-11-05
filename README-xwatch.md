@@ -28,10 +28,24 @@ iOS ntfy App：`Settings → Subscribe to topic`，URL 填上面的完整地址�
 
 | 文件 | 作用 |
 | --- | --- |
-| `watchlist.txt` | 监控名单，一行一个账号，`#` 注释，改完提交即生效 |
+| `watchlist.txt` | 监控名单，`账号 [主题]`；写主题=这个人单独一个主题，不写=进默认主题 |
 | `xwatch.py` | 抓取 + 组包 + 推送，纯 requests，无浏览器依赖 |
 | `state.json` | 每个账号最后推送的推文 ID，workflow 每轮自动提交回仓库 |
 | `.github/workflows/xwatch.yml` | 定时（10 分钟）+ 手动触发 |
+
+## 主题
+
+默认主题 `xtweet-9f4bq2wp` 收“没指定主题”的账号（快讯类混在一起）。
+指定了主题的账号，推文只进自己的主题：
+
+| 账号 | 主题 | 订阅地址 |
+| --- | --- | --- |
+| `DeItaone` | `xtweet-9f4bq2wp` | `http://112.74.95.74:8858/xtweet-9f4bq2wp` |
+| `FirstSquawk` | `xtweet-9f4bq2wp` | 同上 |
+| `elonmusk` | `x-elonmusk` | `http://112.74.95.74:8858/x-elonmusk` |
+
+新加一个人单独主题：在 `watchlist.txt` 里写 `<账号> <主题>`，主题名以 `x-` 开头（写入令牌已授权 `x-*`），
+提交后下一轮生效；第一次见到这个账号会自动推一条最新的做种子。
 
 ## 消息格式
 
