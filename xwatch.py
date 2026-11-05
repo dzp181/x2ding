@@ -24,6 +24,7 @@ import re
 import sys
 import time
 from datetime import datetime, timedelta, timezone
+from urllib.parse import quote
 
 import requests
 
@@ -210,15 +211,53 @@ def pick_image(status):
 
 def proxied_image(url):
     """
-    pbs.twimg.com 在国内直连打不开，走 wsrv.nl 图床代理（服务器实测可达，2s 内出图）。
-    只对 twimg 域名改写，其它保持原样。
+    pbs.twimg.com 在国内直连打不开，走 wsrv.nl 图床代理。
+
+    注意：wsrv 的 url 参数必须**整条编码**（带 https:// 且 percent-encode），
+    否则它转去抓 twimg 时会拿到 520，自己返回 404 —— 图就挂了。
     """
     if not url:
         return ""
     if "pbs.twimg.com" not in url:
         return url
-    bare = url.split("?")[0].replace("https://", "").replace("http://", "")
-    return f"https://wsrv.nl/?url={bare}&w=1200&output=jpg&n=-1"
+    base = url.split("?")[0]
+    if not re.search(r"\.(jpg|jpeg|png|webp|gif)$", base, re.I):
+        base += "?format=jpg&name=large"
+    return f"https://wsrv.nl/?url={quote(base, safe='')}&w=1200&output=jpg&n=-1"
+
+
+def image_ok(session, img_url):
+    """发之前先确认这张图真能下下来：200 + image/* + 文件头是图片。"""
+    try:
+        r = session.get(img_url, timeout=20, stream=True)
+        ct = (r.headers.get("content-type") or "").lower()
+        head = r.raw.read(16)
+        r.close()
+        if r.status_code != 200 or not ct.startswith("image/"):
+            return False
+        return head[:3] == b"\xff\xd8\xff" or head[:4] == b"\x89PNG" or head[:4] == b"RIFF" or head[:6] in (b"GIF87a", b"GIF89a")
+    except Exception as e:
+        log(f"图片预检异常: {e}")
+        return False
+
+
+def ready_image(session, status, tries=2):
+    """
+    挑图 → 换代理地址 → 预检。
+    宁可只发文字，也不能发一张点开是 404 的图（图片由手机侧的 wsrv 直连下载，
+    服务端不会替我们校验，所以必须在发之前自己先下一遍）。
+    """
+    raw = pick_image(status)
+    if not raw:
+        return ""
+    img = proxied_image(raw)
+    for i in range(tries):
+        if image_ok(session, img):
+            return img
+        if i + 1 < tries:
+            img = f"{img}&ts={int(time.time())}"   # 换个缓存键再来一次
+    log(f"图片预检失败，本条只发文字: {raw[:70]}")
+    return ""
 
 
 # -------------------------------------------------------------------- 推送 --
@@ -285,7 +324,7 @@ def main():
             if not results:
                 continue
             for status in sorted(results, key=sid, reverse=True)[:8]:
-                img = proxied_image(pick_image(status))
+                img = ready_image(session, status)
                 if not img:
                     continue
                 title, body, click = build_message(session, status)
@@ -343,7 +382,7 @@ def main():
             if DRY_RUN:
                 log(f"[DRY] {title}\n{body}\n")
                 continue
-            if publish(session, title, body, click, proxied_image(pick_image(status)), topic):
+            if publish(session, title, body, click, ready_image(session, status), topic):
                 total_pushed += 1
                 log(f"@{handle}: 已推送 {status.get('id')} → {topic or NTFY_TOPIC}")
                 time.sleep(1)
