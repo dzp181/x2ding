@@ -12,3 +12,4 @@ thankUcrypto x-thankucrypto
 realDonaldTrump x-realdonaldtrump   # 特朗普的推文
 bboczeng x-bboczeng   # 勃勃OC的推文
 CathieDWood x-cathiedwood   # 木头姐的推文
+LindaRaschke x-lindaraschke   # 资深职业交易员，曾管理对冲基金，《New Market Wizards》人物，侧重技术与短线交易流程。
