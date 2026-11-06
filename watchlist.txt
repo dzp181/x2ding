@@ -17,3 +17,4 @@ xiaomustock x-xiaomustock   # 半导体与存储行业研究深入，注重赛�
 hanking66 x-hanking66   # 美股仙人，偏盘面与情绪
 qinbafrank x-qinbafrank   # AI/科技趋势 + 宏观流动性 + 周期研究，常拆解机构报告，视角交叉（美股+Crypto+全球资本）。
 maojietrading x-maojietrading   # 纽交所背景老交易员，日常盘中提示、进场点位、风控与复盘，实战细节较多。
+AntonnLaVay x-antonnlavay   # 期权与波动率、Greeks讲解清晰，适合期权入门到进阶。
