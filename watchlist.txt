@@ -1,10 +1,12 @@
-# 格式：账号 [主题]
+# 格式：账号 [主题] [# 说明]
 #   写了主题：这个人的推文只进这个主题（一人一主题）
 #   不写主题：走默认主题 xtweet-9f4bq2wp
+#   行尾 "# 说明" 只给网页上的中文描述用，抓取时会自动忽略
 #   "#!" 开头 = 已停用，不抓取也不推送
 # 本文件由网页配置工具维护，也可以直接手改，两边都认。
-elonmusk            x-elonmusk
-xy_xtony            x-xtony
-aleabitoreddit      x-serenity
-cz_binance          x-cz_binance
-thankUcrypto        x-thankucrypto
+elonmusk x-elonmusk
+xy_xtony x-xtony
+aleabitoreddit x-serenity
+cz_binance x-cz_binance
+thankUcrypto x-thankucrypto
+realDonaldTrump x-realdonaldtrump   # 特朗普
