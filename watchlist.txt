@@ -10,4 +10,4 @@ aleabitoreddit x-serenity
 cz_binance x-cz_binance
 thankUcrypto x-thankucrypto
 realDonaldTrump x-realdonaldtrump   # 特朗普的推文
-bboczeng x-b   # 勃勃OC
+bboczeng x-bboczeng   # 勃勃OC的推文
