@@ -24,6 +24,11 @@
     "ok": true,
     "tries": 0
   },
+  "chenreason": {
+    "at": "2026-11-06T09:22:33Z",
+    "ok": true,
+    "tries": 0
+  },
   "cnfinancewatch": {
     "at": "2026-11-06T07:27:15Z",
     "ok": true,
@@ -39,6 +44,11 @@
     "ok": true,
     "tries": 0
   },
+  "earningsreader": {
+    "at": "2026-11-06T09:22:32Z",
+    "ok": true,
+    "tries": 0
+  },
   "elonmusk": {
     "at": "2026-11-06T07:26:55Z",
     "ok": true,
@@ -48,6 +58,11 @@
     "at": "2026-11-06T07:27:07Z",
     "ok": true,
     "tries": 0
+  },
+  "labubu_trader": {
+    "at": "2026-11-06T09:22:29Z",
+    "ok": false,
+    "tries": 1
   },
   "lindaraschke": {
     "at": "2026-11-06T07:27:04Z",
@@ -101,6 +116,11 @@
   },
   "xy_xtony": {
     "at": "2026-11-06T07:26:56Z",
+    "ok": true,
+    "tries": 0
+  },
+  "yuyue_chris": {
+    "at": "2026-11-06T09:22:30Z",
     "ok": true,
     "tries": 0
   }
