@@ -8,7 +8,7 @@ elonmusk x-elonmusk
 xy_xtony x-xtony
 aleabitoreddit x-serenity   # 近期很火的AI与半导体供应链深度研究账号，逻辑清晰，被不少人称为“必读”级别。
 cz_binance x-cz_binance   # 币安CZ 的推文
-thankUcrypto x-thankucrypto
+thankUcrypto x-thankucrypto   # 熬鹰的推文
 realDonaldTrump x-realdonaldtrump   # 特朗普的推文
 bboczeng x-bboczeng   # 勃勃OC的推文
 CathieDWood x-cathiedwood   # 木头姐，ARK Invest创始人，偏主题投资（AI、创新科技），分享组合与宏观观点。
