@@ -38,6 +38,17 @@ NTFY_URL = os.environ.get("NTFY_URL", "http://112.74.95.74:8858").rstrip("/")
 NTFY_TOPIC = os.environ.get("NTFY_TOPIC", "xtweet-9f4bq2wp")
 NTFY_TOKEN = os.environ.get("NTFY_TOKEN", "").strip()
 
+# 网页上「用户新增」的监控存在云表 xw_watch 里（普通用户没有 GitHub 写权限）。
+# 匿名只读，且只放开 handle/topic 两列；读不到就当没有，绝不影响仓库名单的抓取。
+CLOUD_WATCH_API = os.environ.get(
+    "XWATCH_CLOUD_API",
+    "https://x-watch-config.app.workbuddy.host/.cloud/database/rest",
+).rstrip("/")
+CLOUD_WATCH_KEY = os.environ.get(
+    "XWATCH_CLOUD_KEY",
+    "wbpk_p56SiaYcfk2CtvuBd3PEnm_eKfaZDWUQqUFWx4wGihkEQoW3FbSP0nQ",
+).strip()
+
 TRANSLATE = os.environ.get("XWATCH_TRANSLATE", "true").lower() in ("1", "true", "yes", "on")
 MAX_PER_USER = int(os.environ.get("XWATCH_MAX_PER_USER", "3"))
 MAX_AGE_HOURS = int(os.environ.get("XWATCH_MAX_AGE_HOURS", "18"))
@@ -90,8 +101,38 @@ def load_watchlist():
     return accounts
 
 
-# -------------------------------------------------------------------- 抓取 --
+def load_cloud_watch(session):
+    """
+    网页上「用户新增」的监控。存于云表 xw_watch，匿名只读 handle/topic。
+    读失败一律返回空 —— 云端挂了也不能拖垮仓库名单的抓取。
+    """
+    if not CLOUD_WATCH_API or not CLOUD_WATCH_KEY:
+        return []
+    try:
+        r = session.get(
+            f"{CLOUD_WATCH_API}/xw_watch",
+            params={"select": "handle,topic", "enabled": "is.true", "status": "eq.approved"},
+            headers={"x-wb-webapp-access-key": CLOUD_WATCH_KEY},
+            timeout=15,
+        )
+        if r.status_code != 200:
+            log(f"云端新增名单跳过：HTTP {r.status_code}")
+            return []
+        rows = r.json() or []
+    except Exception as e:
+        log(f"云端新增名单跳过：{e}")
+        return []
+    out = []
+    for x in rows:
+        if not isinstance(x, dict):
+            continue
+        h = str(x.get("handle") or "").strip().lstrip("@")
+        if h:
+            out.append((h, str(x.get("topic") or "").strip()))
+    return out
 
+
+# -------------------------------------------------------------------- 抓取 --
 def fetch_statuses(session, handle, count=20, attempts=5):
     """
     取某账号最近若干条推文；彻底失败返回 None（与“真的没有推文”区分开）。
@@ -336,6 +377,12 @@ def main():
         return 1
 
     accounts = load_watchlist()
+    # 网页上用户新增、且管理员已批准的，追加在后面；同账号以仓库那份为准
+    seen = {h.lower() for h, _ in accounts}
+    extra = [(h, t) for h, t in load_cloud_watch(session) if h.lower() not in seen]
+    if extra:
+        log(f"云端已批准 {len(extra)} 个：" + ", ".join(h for h, _ in extra))
+    accounts += extra
     log("监控 " + ", ".join(f"{h}→{t or NTFY_TOPIC}" for h, t in accounts))
 
     state = {}
