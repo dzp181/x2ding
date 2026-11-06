@@ -17,7 +17,6 @@ xiaomustock x-xiaomustock   # 半导体与存储行业研究深入，注重赛�
 hanking66 x-hanking66   # 美股仙人，偏盘面与情绪
 qinbafrank x-qinbafrank   # AI/科技趋势 + 宏观流动性 + 周期研究，常拆解机构报告，视角交叉（美股+Crypto+全球资本）。
 maojietrading x-maojietrading   # 纽交所背景老交易员，日常盘中提示、进场点位、风控与复盘，实战细节较多。
-AntonnLaVay x-antonnlavay   # 期权与波动率、Greeks讲解清晰，适合期权入门到进阶。
 artinmemes x-artinmemes   # 科技投资、热点叙事与市场机会点评。
 LucyBuilding x-lucybuilding   # 普通人出海投资路径、配置框架与工具分享（偏入门友好）
 cnfinancewatch x-cnfinancewatch   # 中美个股对比、周报与盘前研报汇总（之前提过，稳定日更）。
