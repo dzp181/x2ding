@@ -442,11 +442,16 @@ def main():
             state[key] = str(newest_id)
             changed = True
 
-    if changed and not DRY_RUN:
+    # 每轮都写一次：即使没有新推文，也把「最后一轮跑完的时间」记下来，
+    # 供网页底部显示运行时间。键名以 _ 开头，不会和任何账号名冲突。
+    if not DRY_RUN:
+        state["_last_run"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+        state["_last_pushed"] = total_pushed
+        state["_last_count"] = len(accounts)
         with open(STATE_FILE, "w", encoding="utf-8") as f:
             json.dump(state, f, indent=2, sort_keys=True, ensure_ascii=False)
             f.write("\n")
-        log("state.json 已更新")
+        log("state.json 已更新" + ("（有新推文）" if changed else "（仅运行时间）"))
 
     log(f"本轮结束，推送 {total_pushed} 条")
     return 0
