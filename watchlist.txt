@@ -14,3 +14,4 @@ bboczeng x-bboczeng   # 勃勃OC的推文
 CathieDWood x-cathiedwood   # 木头姐，ARK Invest创始人，偏主题投资（AI、创新科技），分享组合与宏观观点。
 LindaRaschke x-lindaraschke   # 资深职业交易员，曾管理对冲基金，《New Market Wizards》人物，侧重技术与短线交易流程。
 xiaomustock x-xiaomustock   # 半导体与存储行业研究深入，注重赛道逻辑拆解，偏实盘观察。
+hanking66 x-hanking66   # 美股仙人，偏盘面与情绪
