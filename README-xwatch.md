@@ -54,10 +54,18 @@ iOS ntfy App：`Settings → Subscribe to topic`，URL 填上面的完整地址�
 
 `https://x-watch-config.app.workbuddy.host/?sharecode=23YTOGQN6L`
 
-单页应用，直接读写本仓库的 `watchlist.txt`（GitHub Contents API），支持新增/改主题/停用/删除，
-改动提交后下一轮 cron 自动生效。首次使用需粘贴一个 Fine-grained token（只授权本仓库，
-`Contents: Read and write`；要「立即运行一轮」再加 `Actions: Read and write`），
-令牌只存在浏览器 localStorage，不经过任何服务器。
+单页应用，带账号体系：邮箱注册（收验证码）→ 设置密码 → 以后用密码登录，也支持找回密码。
+登录后才能看到配置页。账号数据存在 WorkBuddy 云服务，与本仓库无关。
+
+登录后：
+
+* **只读浏览**（默认）：能看到名单、主题、订阅地址，不需要任何 GitHub 凭据——本仓库是公开的，
+  页面用匿名 GitHub API 读取。
+* **编辑**：需要额外粘贴一个 Fine-grained token（只授权本仓库，`Contents: Read and write`；
+  要「立即运行一轮」再加 `Actions: Read and write`），令牌只存在这台浏览器的 localStorage，
+  不经过任何服务器，也不会写进云端。
+
+所以登录是「进站门禁」，写权限仍然由 GitHub 令牌控制。改动提交后下一轮 cron 自动生效。
 
 文件格式向后兼容：`#! handle topic` 表示停用（`xwatch.py` 把它当注释跳过）。
 
