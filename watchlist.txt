@@ -13,7 +13,7 @@ realDonaldTrump x-realdonaldtrump   # 特朗普的推文
 CathieDWood x-cathiedwood   # 木头姐，ARK Invest创始人，偏主题投资（AI、创新科技），分享组合与宏观观点。
 LindaRaschke x-lindaraschke   # 资深职业交易员，曾管理对冲基金，《New Market Wizards》人物，侧重技术与短线交易流程。
 xiaomustock x-xiaomustock   # 半导体与存储行业研究深入，注重赛道逻辑拆解，偏实盘观察。
-hanking66 x-hanking66   # 美股仙人，偏盘面与情绪
+#! hanking66 x-hanking66   # 美股仙人，偏盘面与情绪
 qinbafrank x-qinbafrank   # AI/科技趋势 + 宏观流动性 + 周期研究，常拆解机构报告，视角交叉（美股+Crypto+全球资本）。
 maojietrading x-maojietrading   # 纽交所背景老交易员，日常盘中提示、进场点位、风控与复盘，实战细节较多。
 artinmemes x-artinmemes   # 科技投资、热点叙事与市场机会点评。
