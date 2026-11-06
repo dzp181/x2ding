@@ -21,6 +21,10 @@ on:
         description: "推一条带图的推文，验证图片能不能显示"
         type: boolean
         default: false
+      refresh_avatars:
+        description: "强制重抓所有头像（换头像时用，平时不用勾）"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -43,7 +47,7 @@ jobs:
           python-version: "3.11"
 
       - name: Install deps
-        run: pip install --quiet requests
+        run: pip install --quiet requests pillow
 
       - name: Scan & push
         env:
@@ -55,16 +59,27 @@ jobs:
           XWATCH_DRY_RUN: ${{ inputs.dry_run && 'true' || 'false' }}
         run: python xwatch.py
 
+      # 头像：只写 avatars/，失败也吞掉（脚本内部返回 0，这里再保一层）
+      # 已有图片一律跳过，平时这步 0 请求；勾 refresh_avatars 才全部重抓
+      - name: Sync avatars
+        continue-on-error: true
+        if: ${{ !inputs.test && !inputs.test_image && !inputs.dry_run }}
+        env:
+          XWATCH_REFRESH_AVATARS: ${{ inputs.refresh_avatars && 'true' || 'false' }}
+        run: python avatars.py
+
       - name: Persist state
         if: ${{ !inputs.test && !inputs.test_image && !inputs.dry_run }}
         run: |
-          if [ -z "$(git status --porcelain state.json)" ]; then
-            echo "state.json 无变化，跳过提交"
+          if [ -z "$(git status --porcelain state.json avatars)" ]; then
+            echo "state.json / avatars 无变化，跳过提交"
             exit 0
           fi
           git config user.name  "xwatch-bot"
           git config user.email "xwatch-bot@users.noreply.github.com"
           git add state.json
+          # 头像加不进去也绝不能耽误 state.json 提交，否则下一轮会重复推送
+          if [ -d avatars ]; then git add avatars || true; fi
           git commit -m "chore(state): xwatch $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
           for i in 1 2 3; do
             if git push; then echo "state pushed"; exit 0; fi
