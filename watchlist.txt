@@ -6,7 +6,7 @@
 # 本文件由网页配置工具维护，也可以直接手改，两边都认。
 elonmusk x-elonmusk
 xy_xtony x-xtony
-aleabitoreddit x-serenity
+aleabitoreddit x-serenity   # 近期很火的AI与半导体供应链深度研究账号，逻辑清晰，被不少人称为“必读”级别。
 cz_binance x-cz_binance   # 币安CZ 的推文
 thankUcrypto x-thankucrypto
 realDonaldTrump x-realdonaldtrump   # 特朗普的推文
