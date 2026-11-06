@@ -11,3 +11,4 @@ cz_binance x-cz_binance   # 币安CZ 的推文
 thankUcrypto x-thankucrypto
 realDonaldTrump x-realdonaldtrump   # 特朗普的推文
 bboczeng x-bboczeng   # 勃勃OC的推文
+CathieDWood x-cathiedwood   # 木头姐的推文
