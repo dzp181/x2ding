@@ -18,3 +18,4 @@ maojietrading x-maojietrading   # 纽交所背景老交易员，日常盘中提�
 artinmemes x-artinmemes   # 科技投资、热点叙事与市场机会点评。
 LucyBuilding x-lucybuilding   # 普通人出海投资路径、配置框架与工具分享（偏入门友好）
 cnfinancewatch x-cnfinancewatch   # 中美个股对比、周报与盘前研报汇总（之前提过，稳定日更）。
+RepYassAnsari x-repyassansari   # RepYassAnsari的推文
