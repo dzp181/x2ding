@@ -20,3 +20,4 @@ LucyBuilding x-lucybuilding   # 普通人出海投资路径、配置框架与工
 cnfinancewatch x-cnfinancewatch   # 中美个股对比、周报与盘前研报汇总（之前提过，稳定日更）。
 RepYassAnsari x-repyassansari   # RepYassAnsari国会议员
 thsottiaux x-chatgpt   # Tibo Codex & ChatGPT 的推文
+wufantouzi x-wufantouzi   # 午饭投资的推文
