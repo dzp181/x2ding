@@ -22,3 +22,5 @@ RepYassAnsari x-repyassansari   # RepYassAnsari国会议员
 thsottiaux x-chatgpt   # Tibo Codex & ChatGPT 的推文
 wufantouzi x-wufantouzi   # 午饭投资的推文
 lianyanshe x-lianyanshe   # 美股投研＋Crypto 币股双修，自称「穿越牛熊的数据派交易员」，口号是周期大于一切
+YaoXiao46714 x-yaoxiao46714   # 只聊纳斯达克 100 和 QQQ，讲估值、周期、长期投资，明说不荐股、不预测短期涨跌
+ChloeGalaxyKD x-chloegalaxykd   # AI
