@@ -26,4 +26,4 @@ YaoXiao46714 x-yaoxiao46714   # 只聊纳斯达克 100 和 QQQ，讲估值、周
 ChloeGalaxyKD x-chloegalaxykd   # AI产品经理，指数基金爱好者，策略研究，资产配置
 pelositracker x-pelositracker   # 佩洛西交易追踪
 finkd x-facebook   # meta创始人的推文
-hejushang8 x-h   # 何居上的推文，专注出海，e si m
+hejushang8 x-hejushang8   # 何居上的推文，专注出海，esim,美卡等
