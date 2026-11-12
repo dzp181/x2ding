@@ -21,3 +21,4 @@ cnfinancewatch x-cnfinancewatch   # 中美个股对比、周报与盘前研报�
 RepYassAnsari x-repyassansari   # RepYassAnsari国会议员
 thsottiaux x-chatgpt   # Tibo Codex & ChatGPT 的推文
 wufantouzi x-wufantouzi   # 午饭投资的推文
+lianyanshe x-lianyanshe   # 美股投研＋Crypto 币股双修，自称「穿越牛熊的数据派交易员」，口号是周期大于一切
