@@ -29,4 +29,4 @@ finkd x-facebook   # meta创始人的推文
 hejushang8 x-hejushang8   # 何居上的推文，专注出海，esim,美卡等
 JensenHuang x-jensenhuang   # founder of  NVIDIA 黄仁勋
 Svwang1 x-svwang1   # 硅谷视角，偏长期投资与科技观察。
-Kay2289123 x-kay2289123   # 投资思路分享，常出现在中文美股榜单前排。
+Kay2289123 x-kay2289123   # 偏价值/芒格风格分析
