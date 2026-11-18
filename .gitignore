@@ -29,3 +29,7 @@ Thumbs.db
 
 # Logs
 *.log
+
+# ima 归档与导出产物（本机运行数据，不入库）
+archive/
+ima_export/
