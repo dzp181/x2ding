@@ -3,9 +3,10 @@
 #   不写主题：走默认主题 xtweet-9f4bq2wp
 #   行尾 "# 说明" 只给网页上的中文描述用，抓取时会自动忽略
 #   说明里的 [TAGS:美股,币圈] = 网页上显示的标签（最多 5 个），抓取时同样忽略
+#   说明里的 [TOP] = 置顶（列表排到最前，但不显示「置顶」字样），抓取时忽略
 #   "#!" 开头 = 已停用，不抓取也不推送
 # 本文件由网页配置工具维护，也可以直接手改，两边都认。
-elonmusk x-elonmusk   # 马斯克的推文
+elonmusk x-elonmusk   # 马斯克的推文 [TAGS:x]
 xy_xtony x-xtony
 aleabitoreddit x-serenity   # 近期很火的AI与半导体供应链深度研究账号，逻辑清晰，被不少人称为“必读”级别。
 cz_binance x-cz_binance   # 币安CZ 的推文 [TAGS:币圈]
