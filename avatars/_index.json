@@ -14,8 +14,18 @@
     "ok": true,
     "tries": 0
   },
+  "baoshu88": {
+    "at": "2026-11-18T07:13:47Z",
+    "ok": false,
+    "tries": 1
+  },
   "bboczeng": {
     "at": "2026-11-06T07:27:02Z",
+    "ok": true,
+    "tries": 0
+  },
+  "brantchinesefn": {
+    "at": "2026-11-18T07:13:50Z",
     "ok": true,
     "tries": 0
   },
@@ -79,6 +89,11 @@
     "ok": true,
     "tries": 0
   },
+  "kay2289123": {
+    "at": "2026-11-18T07:13:45Z",
+    "ok": true,
+    "tries": 0
+  },
   "labubu_trader": {
     "at": "2026-11-06T09:31:02Z",
     "ok": true,
@@ -101,6 +116,11 @@
   },
   "maojietrading": {
     "at": "2026-11-06T07:27:10Z",
+    "ok": true,
+    "tries": 0
+  },
+  "octopusycc": {
+    "at": "2026-11-18T07:13:49Z",
     "ok": true,
     "tries": 0
   },
@@ -129,6 +149,11 @@
     "ok": true,
     "tries": 0
   },
+  "svwang1": {
+    "at": "2026-11-18T07:13:44Z",
+    "ok": true,
+    "tries": 0
+  },
   "thankucrypto": {
     "at": "2026-11-06T07:27:00Z",
     "ok": true,
@@ -141,6 +166,11 @@
   },
   "tj_research": {
     "at": "2026-11-06T07:27:49Z",
+    "ok": true,
+    "tries": 0
+  },
+  "traders18": {
+    "at": "2026-11-18T07:13:48Z",
     "ok": true,
     "tries": 0
   },
