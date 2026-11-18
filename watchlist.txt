@@ -28,3 +28,4 @@ pelositracker x-pelositracker   # 佩洛西交易追踪
 finkd x-facebook   # meta创始人的推文
 hejushang8 x-hejushang8   # 何居上的推文，专注出海，esim,美卡等
 JensenHuang x-jensenhuang   # founder of  NVIDIA 黄仁勋
+Svwang1 x-svwang1   # 硅谷视角，偏长期投资与科技观察。
