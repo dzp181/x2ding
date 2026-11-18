@@ -2,13 +2,13 @@
 #   写了主题：这个人的推文只进这个主题（一人一主题）
 #   不写主题：走默认主题 xtweet-9f4bq2wp
 #   行尾 "# 说明" 只给网页上的中文描述用，抓取时会自动忽略
-#   说明里的 [VIP] = 网页上标为重要（高亮），[TOP] = 置顶（排到最前），抓取时同样忽略
+#   说明里的 [TAGS:美股,币圈] = 网页上显示的标签（最多 5 个），抓取时同样忽略
 #   "#!" 开头 = 已停用，不抓取也不推送
 # 本文件由网页配置工具维护，也可以直接手改，两边都认。
-elonmusk x-elonmusk   # 马斯克的推文 [VIP] [TOP]
+elonmusk x-elonmusk   # 马斯克的推文
 xy_xtony x-xtony
-aleabitoreddit x-serenity   # 近期很火的AI与半导体供应链深度研究账号，逻辑清晰，被不少人称为“必读”级别。 [VIP]
-cz_binance x-cz_binance   # 币安CZ 的推文
+aleabitoreddit x-serenity   # 近期很火的AI与半导体供应链深度研究账号，逻辑清晰，被不少人称为“必读”级别。
+cz_binance x-cz_binance   # 币安CZ 的推文 [TAGS:币圈]
 thankUcrypto x-thankucrypto   # 熬鹰的推文
 realDonaldTrump x-realdonaldtrump   # 特朗普的推文
 CathieDWood x-cathiedwood   # 木头姐，ARK Invest创始人，偏主题投资（AI、创新科技），分享组合与宏观观点。
@@ -20,7 +20,7 @@ artinmemes x-artinmemes   # 科技投资、热点叙事与市场机会点评。
 LucyBuilding x-lucybuilding   # 普通人出海投资路径、配置框架与工具分享（偏入门友好）
 cnfinancewatch x-cnfinancewatch   # 中美个股对比、周报与盘前研报汇总（之前提过，稳定日更）。
 RepYassAnsari x-repyassansari   # RepYassAnsari国会议员
-thsottiaux x-chatgpt   # Tibo Codex & ChatGPT 的推文 [VIP] [TOP]
+thsottiaux x-chatgpt   # Tibo Codex & ChatGPT 的推文
 wufantouzi x-wufantouzi   # 午饭投资的推文
 lianyanshe x-lianyanshe   # 美股投研＋Crypto 币股双修，自称「穿越牛熊的数据派交易员」，口号是周期大于一切
 YaoXiao46714 x-yaoxiao46714   # 只聊纳斯达克 100 和 QQQ，讲估值、周期、长期投资，明说不荐股、不预测短期涨跌
@@ -28,7 +28,7 @@ ChloeGalaxyKD x-chloegalaxykd   # AI产品经理，指数基金爱好者，策�
 pelositracker x-pelositracker   # 佩洛西交易追踪
 finkd x-facebook   # meta创始人的推文
 hejushang8 x-hejushang8   # 何居上的推文，专注出海，esim,美卡等
-JensenHuang x-jensenhuang   # founder of NVIDIA 黄仁勋 [VIP] [TOP]
+JensenHuang x-jensenhuang   # founder of NVIDIA 黄仁勋
 Svwang1 x-svwang1   # 硅谷视角，偏长期投资与科技观察。
 Kay2289123 x-kay2289123   # 偏价值/芒格风格分析
 baoshu88 x-baoshu88   # 兼具宏观视野与美股实战观察，观点相对独立
