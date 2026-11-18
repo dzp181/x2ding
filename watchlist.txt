@@ -10,7 +10,7 @@ elonmusk x-elonmusk   # 马斯克的推文 [TAGS:x]
 xy_xtony x-xtony   # 逍遥XTony 的推文 [TAGS:币圈]
 aleabitoreddit x-serenity   # 近期很火的AI与半导体供应链深度研究账号，逻辑清晰，被不少人称为“必读”级别。 [TAGS:美股]
 cz_binance x-cz_binance   # 币安CZ 的推文 [TAGS:币圈]
-thankUcrypto x-thankucrypto   # 熬鹰的推文
+thankUcrypto x-thankucrypto   # 熬鹰的推文 [TAGS:币圈]
 realDonaldTrump x-realdonaldtrump   # 特朗普的推文
 CathieDWood x-cathiedwood   # 木头姐，ARK Invest创始人，偏主题投资（AI、创新科技），分享组合与宏观观点。
 LindaRaschke x-lindaraschke   # 资深职业交易员，曾管理对冲基金，《New Market Wizards》人物，侧重技术与短线交易流程。
