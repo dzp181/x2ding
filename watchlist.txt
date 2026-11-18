@@ -5,7 +5,7 @@
 #   说明里的 [VIP] = 网页上标为重要（高亮），抓取时同样忽略
 #   "#!" 开头 = 已停用，不抓取也不推送
 # 本文件由网页配置工具维护，也可以直接手改，两边都认。
-elonmusk x-elonmusk   # 马斯克的推文
+elonmusk x-elonmusk   # 马斯克的推文 [VIP]
 xy_xtony x-xtony
 aleabitoreddit x-serenity   # 近期很火的AI与半导体供应链深度研究账号，逻辑清晰，被不少人称为“必读”级别。
 cz_binance x-cz_binance   # 币安CZ 的推文
