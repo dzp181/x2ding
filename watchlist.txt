@@ -44,3 +44,8 @@ raycat2021 x-raycat2021   # 美股深度个股研究者，高频产出较长硬�
 Balder13946731 x-balder13946731   # PhD背景的兼职交易员，交易计划与个股分析偏务实，数据驱动框架清晰。 [TAGS:美股]
 peng_hellen x-peng_hellen   # 对商业航空等细分领域有独到观察（例如Rocket Lab相关研究），视角比较特别。 [TAGS:美股]
 ViewsOfChris x-viewsofchris   # 前交易所CFO背景，专注美股成长股与被低估机会，基本面研究扎实。 [TAGS:美股]
+SVScholar x-svscholar   # 计算机背景，企业基本面和长期投资框架清晰，适合系统学习科技股。
+TheMarketMemo x-themarketmemo   # 定期分享真实组合与策略框架（动量、杠杆ETF等），实战可参考。
+yifaninvest x-yifaninvest   # 被部分人额外推荐的投资心得账号，偏个人思考。
+TJ_Research x-tj_research   # 美股+宏观，重点拆美联储、地缘对市场影响，分析有框架。
+Huanusa x-huanusa   # 隐藏周期、流动性与趋势框架，观点较独立。
