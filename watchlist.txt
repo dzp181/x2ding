@@ -40,3 +40,7 @@ JohnsonZ91127 x-johnsonz91127   # 资深美股与期权交易员，把价值投�
 Imlaomao x-imlaomao   # 长期主义实战派，定期分享真实仓位复盘与市场观察，内容相对客观有温度。 [TAGS:美股]
 caizhenghai x-caizhenghai   # 程序员转投资者，对科技与SaaS个股有详细研究笔记，适合学选股逻辑。 [TAGS:美股]
 yijiangren x-yijiangren   # 文章框架较长，AI、新兴赛道有个人思考，观点型内容较多。 [TAGS:美股]
+raycat2021 x-raycat2021   # 美股深度个股研究者，高频产出较长硬核分析，研究功底较深，数据+逻辑并重。 [TAGS:美股]
+Balder13946731 x-balder13946731   # PhD背景的兼职交易员，交易计划与个股分析偏务实，数据驱动框架清晰。 [TAGS:美股]
+peng_hellen x-peng_hellen   # 对商业航空等细分领域有独到观察（例如Rocket Lab相关研究），视角比较特别。 [TAGS:美股]
+ViewsOfChris x-viewsofchris   # 前交易所CFO背景，专注美股成长股与被低估机会，基本面研究扎实。 [TAGS:美股]
