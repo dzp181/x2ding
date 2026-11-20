@@ -36,3 +36,7 @@ baoshu88 x-baoshu88   # 兼具宏观视野与美股实战观察，观点相对�
 traders18 x-traders18   # 交易相关内容，风格直接
 octopusycc x-octopusycc   # 市场讨论与观点输出
 BrantChinesefn x-brantchinesefn   # 综合投资观察
+JohnsonZ91127 x-johnsonz91127   # 资深美股与期权交易员，把价值投资和实战策略结合，案例落地性强。 [TAGS:美股]
+Imlaomao x-imlaomao   # 长期主义实战派，定期分享真实仓位复盘与市场观察，内容相对客观有温度。 [TAGS:美股]
+caizhenghai x-caizhenghai   # 程序员转投资者，对科技与SaaS个股有详细研究笔记，适合学选股逻辑。 [TAGS:美股]
+yijiangren x-yijiangren   # 文章框架较长，AI、新兴赛道有个人思考，观点型内容较多。 [TAGS:美股]
