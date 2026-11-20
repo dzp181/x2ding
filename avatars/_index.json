@@ -35,9 +35,9 @@
     "tries": 0
   },
   "caizhenghai": {
-    "at": "2026-11-20T05:41:16Z",
+    "at": "2026-11-20T05:53:32Z",
     "ok": false,
-    "tries": 1
+    "tries": 2
   },
   "cathiedwood": {
     "at": "2026-11-06T07:27:42Z",
@@ -91,6 +91,11 @@
   },
   "hejushang8": {
     "at": "2026-11-12T09:41:37Z",
+    "ok": true,
+    "tries": 0
+  },
+  "huanusa": {
+    "at": "2026-11-20T05:53:36Z",
     "ok": true,
     "tries": 0
   },
@@ -179,6 +184,11 @@
     "ok": true,
     "tries": 0
   },
+  "svscholar": {
+    "at": "2026-11-20T05:53:33Z",
+    "ok": true,
+    "tries": 0
+  },
   "svwang1": {
     "at": "2026-11-18T07:13:44Z",
     "ok": true,
@@ -186,6 +196,11 @@
   },
   "thankucrypto": {
     "at": "2026-11-06T07:27:00Z",
+    "ok": true,
+    "tries": 0
+  },
+  "themarketmemo": {
+    "at": "2026-11-20T05:53:34Z",
     "ok": true,
     "tries": 0
   },
@@ -231,6 +246,11 @@
   },
   "yaoxiao46714": {
     "at": "2026-11-12T09:30:37Z",
+    "ok": true,
+    "tries": 0
+  },
+  "yifaninvest": {
+    "at": "2026-11-20T05:53:35Z",
     "ok": true,
     "tries": 0
   },
